@@ -8,7 +8,7 @@ using Oxide.Core.Libraries.Covalence;
 
 namespace Oxide.Plugins
 {
-    [Info("Pop", "Sigilo", "1.1.0")]
+    [Info("Pop", "Sigilo", "1.4.0")]
     [Description("Displays the number of connected and connecting players.")]
 
     public class Pop : CovalencePlugin
@@ -30,7 +30,7 @@ namespace Oxide.Plugins
             Config["Command"] = "pop";
         }
 
-        private void LoadConfig()
+        protected new void LoadConfig()
         {
             try
             {
@@ -44,7 +44,7 @@ namespace Oxide.Plugins
             SaveConfig();
         }
 
-        private void SaveConfig()
+        protected new void SaveConfig()
         {
             Config["Command"] = command;
             Config.Save();
