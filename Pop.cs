@@ -10,8 +10,8 @@ using Rust;
 
 namespace Oxide.Plugins
 {
-    [Info("Pop", "Sigilo", "1.4.6")]
-    [Description("Displays the number of connected and connecting players.")]
+    [Info("Pop", "Sigilo", "1.7.1")]
+    [Description("Displays the number of connected, connecting, and queued players.")]
 
     public class Pop : CovalencePlugin
     {
@@ -53,6 +53,11 @@ namespace Oxide.Plugins
             Config.Save();
         }
 
+        private int GetQueuedPlayersCount()
+        {
+            return Network.Net.sv.connections.Count(conn => !conn.connected && conn.state == Network.Connection.State.InQueue);
+        }
+
         private void PopCommand(IPlayer player, string cmd, string[] args)
         {
             if (!permission.UserHasPermission(player.Id, "pop.use"))
@@ -63,9 +68,11 @@ namespace Oxide.Plugins
 
             int connectedPlayers = BasePlayer.activePlayerList.Count;
             int joiningPlayers = Network.Net.sv.connections.Count - connectedPlayers;
+            int playersInQueue = GetQueuedPlayersCount();
+            joiningPlayers -= playersInQueue;
 
             string message = lang.GetMessage("PopMessage", this, player.Id);
-            message = string.Format(CultureInfo.InvariantCulture, message, connectedPlayers, ConVar.Server.maxplayers, joiningPlayers);
+            message = string.Format(CultureInfo.InvariantCulture, message, connectedPlayers, ConVar.Server.maxplayers, joiningPlayers, playersInQueue);
             player.Reply(message);
         }
 
@@ -74,7 +81,7 @@ namespace Oxide.Plugins
             lang.RegisterMessages(new Dictionary<string, string>
             {
                 {"NoPermission", "You don't have permission to use this command."},
-                {"PopMessage", "Players Online: {0}/{1} | Players Joining: {2}"}
+                {"PopMessage", "Players Online: {0}/{1} | Joining: {2} | Queued: {3}"}
             }, this);
         }
     }
