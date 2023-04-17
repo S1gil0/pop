@@ -1,5 +1,5 @@
 # /pop command for oxide rust servers
-/pop command for oxide rust servers that shows how many players are online and how many players are connecting to the server.
+/pop command for oxide rust servers, it shows how many players are online and how many players are connecting to the server.
 
 permissions: 
 pop.use
