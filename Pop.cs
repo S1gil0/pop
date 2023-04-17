@@ -1,14 +1,16 @@
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Oxide.Core;
 using Oxide.Core.Libraries;
 using Oxide.Core.Plugins;
-using Rust;
 using Oxide.Core.Libraries.Covalence;
+using Rust;
 
 namespace Oxide.Plugins
 {
-    [Info("Pop", "Sigilo", "1.4.0")]
+    [Info("Pop", "Sigilo", "1.4.6")]
     [Description("Displays the number of connected and connecting players.")]
 
     public class Pop : CovalencePlugin
@@ -36,9 +38,10 @@ namespace Oxide.Plugins
             {
                 command = Config.Get<string>("Command");
             }
-            catch
+            catch (Exception ex)
             {
-                LoadDefaultConfig();
+                PrintError($"Error loading config: {ex.Message}");
+                throw;
             }
 
             SaveConfig();
@@ -61,7 +64,8 @@ namespace Oxide.Plugins
             int connectedPlayers = BasePlayer.activePlayerList.Count;
             int joiningPlayers = Network.Net.sv.connections.Count - connectedPlayers;
 
-            string message = string.Format(lang.GetMessage("PopMessage", this, player.Id), connectedPlayers, ConVar.Server.maxplayers, joiningPlayers);
+            string message = lang.GetMessage("PopMessage", this, player.Id);
+            message = string.Format(CultureInfo.InvariantCulture, message, connectedPlayers, ConVar.Server.maxplayers, joiningPlayers);
             player.Reply(message);
         }
 
