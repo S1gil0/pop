@@ -12,6 +12,7 @@ pop.use
 Write in the chat /pop
 
 It will return to you (not broadcasted to the server, only to the player that issued the command):
+
 Players Online: 79/100 Players Joining: 3 
 
 Hope you enjoy!
