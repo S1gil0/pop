@@ -16,6 +16,6 @@ Example:
 
 Players Online: 189/200 | Joining: 11 | Queued: 24
 
-Localization:Copy the oxide/lang/en folder and rename it to a new language (like de for german), edit the file Pop.json inside that folder overwriting with text in the new language.
+Localization: Copy the oxide/lang/en folder and rename it to a new language (like de for german), edit the file Pop.json inside that folder overwriting with text in the new language.
 
 Hope you enjoy!
