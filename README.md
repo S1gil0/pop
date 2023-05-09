@@ -1,4 +1,4 @@
-<img src="https://i.postimg.cc/prHyjHGN/pop.png">
+<img src="https://github.com/S1gil0/pop/blob/main/pop.png?raw=true">
 
 /pop command for oxide rust server, it shows how many players are online, connecting and queued to enter the server.
 
