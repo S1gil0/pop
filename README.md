@@ -1,4 +1,4 @@
-![pop](https://i.postimg.cc/XYxBwtBh/popx.png)
+![pop](https://i.postimg.cc/B6QZFdh6/pop1.png)
 
 /pop command for oxide rust server, it shows how many players are online, connecting and queued to enter the server.
 
