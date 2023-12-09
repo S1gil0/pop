@@ -49,9 +49,9 @@ namespace Oxide.Plugins
                 onlineColor = Config.Get<string>("OnlineColor") ?? "#ff686b";
                 joiningColor = Config.Get<string>("JoiningColor") ?? "#ff686b";
                 queuedColor = Config.Get<string>("QueuedColor") ?? "#ff686b";
-                broadcastDelay = Config.Get<int?>("BroadcastDelay") ?? 10;
-                enablePersonalCommand = Config.Get<bool?>("EnablePersonalCommand") ?? true;
-                enableGlobalCommand = Config.Get<bool?>("EnableGlobalCommand") ?? true;
+                broadcastDelay = Config.Get<int>("BroadcastDelay");
+                enablePersonalCommand = Config.Get<bool>("EnablePersonalCommand");
+                enableGlobalCommand = Config.Get<bool>("EnableGlobalCommand");
             }
             catch (Exception ex)
             {
